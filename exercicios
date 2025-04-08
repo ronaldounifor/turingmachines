@@ -1,3 +1,197 @@
+PAR DE UNS:
+input: '110001101111011'
+blank: ' '
+start state: par
+table:
+  par:
+    0: R
+    1: {R: impar}
+    ' ': {R: q_acc}
+  impar:
+    0: R
+    1: {R: par}
+    ' ': {R: q_rej}
+  q_acc:
+  q_rej:
+    
+
+João Guilherme:
+input: '11011'
+blank: ' '
+start state: Q0
+table:
+  Q0:
+    [0]: R
+    [1]: {R: Q1}
+  Q1:
+    [1]: {R: Q0}
+    [0]: R
+    [' ']: {L: done}
+  done:
+
+Clysman
+João Guilherme:
+input: '11011'
+blank: ' '
+start state: Q0
+table:
+  Q0:
+    [0]: R
+    [1]: {R: Q1}
+  Q1:
+    [1]: {R: Q0}
+    [0]: R
+    [' ']: {L: done}
+  done:
+
+Clysman
+input: '10011'
+blank: ' '
+
+start state: q0
+table:
+  q0:
+    0: R
+    1: {R: accept}
+
+  accept:
+    0: {R: accept}
+    1: {R: q0}
+
+RAFAEL LINDÂO -> PAPOCO
+input: '1'
+blank: ' '
+
+start state: q0
+table:
+  q0:
+    0: R       
+    1: {R: q1}
+    #' ': {R: accept}
+  q1:
+    0: R
+    1: {R: q0}
+    ' ': {R: accept}
+  accept:
+
+
+
+----- CPF -------
+input: 'xxxx.xxx.xxx-xxx'
+blank: ' '
+
+start state: q0
+table:
+  q0:
+    x: {R: q1}
+  q1:
+    x: {R: q2}
+  q2:
+    x: {R: q3}
+  q3:
+    .: {R: q4}
+  q4:
+    x: {R: q5}
+  q5:
+    x: {R: q6}
+  q6:
+    x: {R: q7}
+  q7:
+    .: {R: q8}
+  q8:
+    x: {R: q9}
+  q9:
+    x: {R: q10}
+  q10:
+    x: {R: q11}
+  q11:
+    -: {R: q12}
+  q12:
+    x: {R: q13}
+  q13:
+    x: {R: qacc}
+  qacc:
+    x: {R: qrej}
+  qrej:
+
+
+
+CPF PROF
+input: 'xxx.xxx.xxx-xx'
+blank: ' '
+
+start state: v0
+table:
+  v0:
+    x: R
+    .: {R: v1}
+    
+  v1:
+    x: R
+    .: {R: v2}
+    
+  v2:
+    x: R
+    -: {R: v3}
+    
+  v3:
+    x: R
+    ' ': {L: v4}
+    
+  v4:
+    x: L
+    .: L
+    -: L
+    ' ': {R: q0}
+  
+  q0:
+    x: {R: q1}
+    
+  q1:
+    x: {R: q2}
+    
+  q2:
+    x: {R: q3}
+    
+  q3:
+    .: {R: q0}
+    -: {R: q1}
+    ' ': {R: q_acc}
+    
+  q_acc:
+
+
+
+PROF ABC
+input: 'aaabbbccc'
+blank: ' '
+start state: q0
+table:
+  # scan to the rightmost digit
+  q0:
+    'a' : {R: q1, write: x}
+    'y' : {R: q5}
+  q1:
+    ['a',y]: R
+    'b'  : {R: q2, write: y}
+  q2:
+    ['b','z']   : R
+    'c'   : {R: q3, write: z}
+  q3:
+    'c'   : R
+    ' '   : {L: q4}
+  q4:
+    [a,b,c,y,z] : L
+    'x' : {R: q0, write: x}
+  q5:
+    'y' : R
+    'z' : {R: q6}
+  q6:
+    'z' : R
+    ' ' : {L: qacc}
+  qacc:
+  
+
 # Número par de 1's
 input: '1001'
 blank: ' '
