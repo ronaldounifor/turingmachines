@@ -1,0 +1,132 @@
+# Número par de 1's
+input: '1001'
+blank: ' '
+start state: par
+table:
+  par:
+    0: R
+    1: {R: impar}
+    ' ': {L: q_acc}
+  impar:
+    0: R
+    1: {R: par}
+    ' ': {L: q_rej}
+  q_rej:
+  q_acc:
+
+
+
+# Autor: MIGUEL HESRON
+# Validação de CPF
+input: '222+222.222-22'
+start state: one
+blank: ' '
+table:
+  one:
+    [0,1,2,3,4,5,6,7,8,9] :  {R : two}
+  two:
+    [0,1,2,3,4,5,6,7,8,9] :  {R : three}
+  three:
+    [0,1,2,3,4,5,6,7,8,9] : {R : dot1}
+  dot1:
+    . : {R : four}
+  four:
+    [0,1,2,3,4,5,6,7,8,9] :  {R : five}
+  five:
+    [0,1,2,3,4,5,6,7,8,9] :  {R : six}
+  six:
+    [0,1,2,3,4,5,6,7,8,9] : {R : dot2}
+  dot2:
+    . : {R : seven}
+  seven:
+    [0,1,2,3,4,5,6,7,8,9] :  {R : eight}
+  eight:
+    [0,1,2,3,4,5,6,7,8,9] :  {R : nine}
+  nine:
+    [0,1,2,3,4,5,6,7,8,9] :  {R : dash}
+  dash:
+    '-' : {R : ten}
+  ten:
+    [0,1,2,3,4,5,6,7,8,9] :  {R : eleven}
+  eleven:
+    [0,1,2,3,4,5,6,7,8,9] :  {R : done}
+  done:
+  
+  
+#Autor: Gustavo
+#Validação de CPF
+input: '000.000.000-00'
+blank: ' '
+start state: p1
+table:
+  p1:
+    [0,1,2,3,4,5,6,7,8,9]: {R: p2}
+  
+  p2:
+    [0,1,2,3,4,5,6,7,8,9]: {R: p3}
+  
+  p3:
+    [0,1,2,3,4,5,6,7,8,9]: R
+    '.': {R: p4}
+  
+  p4:
+    [0,1,2,3,4,5,6,7,8,9]: {R: p5}
+  
+  p5:
+    [0,1,2,3,4,5,6,7,8,9]: {R: p6}
+  
+  p6:
+    [0,1,2,3,4,5,6,7,8,9]: R
+    '.': {R: p7}
+  
+  p7:
+    [0,1,2,3,4,5,6,7,8,9]: {R: p8}
+  
+  p8:
+    [0,1,2,3,4,5,6,7,8,9]: {R: p9}
+  
+  p9:
+    [0,1,2,3,4,5,6,7,8,9]: R
+    '-': {R: p10}
+  
+  p10:
+    [0,1,2,3,4,5,6,7,8,9]: {R: p11}
+  
+  p11:
+    [0,1,2,3,4,5,6,7,8,9]: {R: pf}
+    
+  pf:
+    # final
+
+
+
+
+#Autor: Rodrigo
+#a^nb^nc^n
+input: 'aaabbbccc'
+blank: ' '
+start state: q0
+table:
+  # scan to the rightmost digit
+  q0:
+    'a' : {R: q1, write: x}
+    'y' : {R: q5}
+  q1:
+    ['a',y]: R
+    'b'  : {R: q2, write: y}
+  q2:
+    ['b','z']   : R
+    'c'   : {R: q3, write: z}
+  q3:
+    'c'   : R
+    ' '   : {L: q4}
+  q4:
+    [a,b,c,y,z] : L
+    'x' : {R: q0, write: x}
+  q5:
+    'y' : R
+    'z' : {R: q6}
+  q6:
+    'z' : R
+    ' ' : {L: qacc}
+  qacc:
